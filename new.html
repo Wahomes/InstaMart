@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="assets/theme/icon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InstaMart</title>
+  <style>
+    /* Base styles (Light Mode by default) */
+    :root {
+      --background-color: #ffffff; /* Light background */
+      --text-color: #000000; /* Dark text */
+      --header-bg-color: #ffffff; /* White header */
+      --button-bg-color: #f1f1f1; /* Light button */
+      --button-text-color: #000000; /* Dark button text */
+      --link-color: #1a73e8; /* Link color */
+      --grid-item-hover-bg: rgba(0, 0, 0, 0.2); /* Dark hover for images */
+      --button-border-color: #cccccc; /* Button border */
+    }
+
+    /* Dark Mode */
+    [data-theme="dark"] {
+      --background-color: #121212; /* Dark background */
+      --text-color: #e0e0e0; /* Light text */
+      --header-bg-color: #1e1e1e; /* Dark header */
+      --button-bg-color: #333333; /* Dark button */
+      --button-text-color: #ffffff; /* Light button text */
+      --link-color: #82b1ff; /* Light blue link color */
+      --grid-item-hover-bg: rgba(255, 255, 255, 0.2); /* Light hover for images */
+      --button-border-color: #444444; /* Darker border */
+    }
+
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Header */
+    header {
+      background-color: var(--header-bg-color);
+      color: var(--text-color);
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--button-border-color);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 40px;
+    }
+
+    /* Toggle Button */
+    #theme-toggle {
+      background-color: var(--button-bg-color);
+      color: var(--button-text-color);
+      border: 1px solid var(--button-border-color);
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    #theme-toggle:hover {
+      background-color: var(--link-color);
+    }
+
+    /* Instagram-style Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .grid-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+
+    .grid-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .grid-item:hover img {
+      transform: scale(1.1); /* Zoom effect on hover */
+    }
+
+    .grid-item:hover {
+      background-color: var(--grid-item-hover-bg);
+    }
+
+    /* Links */
+    a {
+      color: var(--link-color);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+
+
+<body>
+  <!-- Header with Dark/Light Mode Toggle -->
+  <header>
+    <h1 style="text-align: center">InstaMart</h1><br>
+    <h2>Just one click away</h2>
+    <button id="theme-toggle">Toggle Dark/Light Mode</button>
+  </header>
+
+  <!-- Instagram-style Grid -->
+  <div class="grid">
+    <div class="grid-item">
+        <img src="assets/buds1.png" alt="buds1">
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/500x500" alt="Image 2">
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/500x500" alt="Image 3">
+    </div>
+    <div class="grid-item">
+      <img src="https://via.placeholder.com/500x500" alt="Image 4">
+    </div>
+
+    <div class="grid-item">
+  <img src="assets/buds1.png" alt="Image 5">
+</div>
+<div class="grid-item">
+  <img src="https://via.placeholder.com/500x500" alt="Image 6">
+</div>
+<div class="grid-item">
+  <img src="https://via.placeholder.com/500x500" alt="Image 7">
+</div>
+<div class="grid-item">
+  <img src="https://via.placeholder.com/500x500" alt="Image 8">
+</div>
+
+  </div>
+
+
+
+  <!-- JavaScript for Dark/Light Mode Toggle -->
+  <script>
+    const toggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+
+    toggleButton.addEventListener('click', () => {
+      // Toggle dark mode by adding/removing the "dark" theme
+      body.setAttribute('data-theme', body.getAttribute('data-theme') === 'dark' ? '' : 'dark');
+
+      // Save the preference to localStorage
+      if (body.getAttribute('data-theme') === 'dark') {
+        localStorage.setItem('theme', 'dark');
+      } else {
+        localStorage.setItem('theme', 'light');
+      }
+    });
+
+    // Apply saved theme on page load
+    if (localStorage.getItem('theme') === 'dark') {
+      body.setAttribute('data-theme', 'dark');
+    }
+  </script>
+</body>
+</html>
